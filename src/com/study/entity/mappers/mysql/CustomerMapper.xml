@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.study.dao.customer.CustomerDao" >
+  <resultMap id="BaseResultMap" type="com.study.entity.customer.Customer" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="RECOMMEND_CODE" property="recommendCode" jdbcType="VARCHAR" />
+    <result column="CUST_STATUS" property="custStatus" jdbcType="VARCHAR" />
+    <result column="PWD_ERROR_COUNTER" property="pwdErrorCounter" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_PWD" property="payPwd" jdbcType="VARCHAR" />
+    <result column="REG_SOURCE" property="regSource" jdbcType="VARCHAR" />
+    <result column="REG_DEVICE" property="regDevice" jdbcType="VARCHAR" />
+    <result column="REG_OS" property="regOs" jdbcType="VARCHAR" />
+    <result column="REFEREE" property="referee" jdbcType="BIGINT" />
+    <result column="NICK_NAME" property="nickName" jdbcType="VARCHAR" />
+    <result column="LOGIN_IP" property="loginIp" jdbcType="VARCHAR" />
+    <result column="LOCK_TIME" property="lockTime" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_COUNT" property="loginCount" jdbcType="INTEGER" />
+    <result column="CUST_TYPE" property="custType" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="CHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="CUST_KIND" property="custKind" jdbcType="VARCHAR" />
+    <result column="ACTIVITY_SRC" property="activitySrc" jdbcType="VARCHAR" />
+    <result column="BELONG_PLATFORM" property="belongPlatform" jdbcType="VARCHAR" />
+    <result column="INVEST_MEDIATE_FLAG" property="investMediateFlag" jdbcType="CHAR" />
+    <result column="BORROW_MEDIATE_FLAG" property="borrowMediateFlag" jdbcType="CHAR" />
+    <result column="RANDOM_NO" property="randomNo" jdbcType="VARCHAR" />
+    <result column="RESET_TIME" property="resetTime" jdbcType="TIMESTAMP" />
+    <result column="YEEPAY_AUTH" property="yeepayAuth" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LOGIN_NAME, LOGIN_PASSWORD, RECOMMEND_CODE, CUST_STATUS, PWD_ERROR_COUNTER, CREATE_TIME, 
+    LAST_LOGIN_TIME, LAST_UPDATE_TIME, PAY_PWD, REG_SOURCE, REG_DEVICE, REG_OS, REFEREE, 
+    NICK_NAME, LOGIN_IP, LOCK_TIME, LOGIN_COUNT, CUST_TYPE, MOBILE, EMAIL, CUST_KIND, 
+    ACTIVITY_SRC, BELONG_PLATFORM, INVEST_MEDIATE_FLAG, BORROW_MEDIATE_FLAG, RANDOM_NO, 
+    RESET_TIME, YEEPAY_AUTH
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from p2p_customer
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from p2p_customer
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.study.entity.customer.Customer" >
+    insert into p2p_customer (ID, LOGIN_NAME, LOGIN_PASSWORD, 
+      RECOMMEND_CODE, CUST_STATUS, PWD_ERROR_COUNTER, 
+      CREATE_TIME, LAST_LOGIN_TIME, LAST_UPDATE_TIME, 
+      PAY_PWD, REG_SOURCE, REG_DEVICE, 
+      REG_OS, REFEREE, NICK_NAME, 
+      LOGIN_IP, LOCK_TIME, LOGIN_COUNT, 
+      CUST_TYPE, MOBILE, EMAIL, 
+      CUST_KIND, ACTIVITY_SRC, BELONG_PLATFORM, 
+      INVEST_MEDIATE_FLAG, BORROW_MEDIATE_FLAG, RANDOM_NO, 
+      RESET_TIME, YEEPAY_AUTH)
+    values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, 
+      #{recommendCode,jdbcType=VARCHAR}, #{custStatus,jdbcType=VARCHAR}, #{pwdErrorCounter,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{payPwd,jdbcType=VARCHAR}, #{regSource,jdbcType=VARCHAR}, #{regDevice,jdbcType=VARCHAR}, 
+      #{regOs,jdbcType=VARCHAR}, #{referee,jdbcType=BIGINT}, #{nickName,jdbcType=VARCHAR}, 
+      #{loginIp,jdbcType=VARCHAR}, #{lockTime,jdbcType=TIMESTAMP}, #{loginCount,jdbcType=INTEGER}, 
+      #{custType,jdbcType=VARCHAR}, #{mobile,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, 
+      #{custKind,jdbcType=VARCHAR}, #{activitySrc,jdbcType=VARCHAR}, #{belongPlatform,jdbcType=VARCHAR}, 
+      #{investMediateFlag,jdbcType=CHAR}, #{borrowMediateFlag,jdbcType=CHAR}, #{randomNo,jdbcType=VARCHAR}, 
+      #{resetTime,jdbcType=TIMESTAMP}, #{yeepayAuth,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.entity.customer.Customer" >
+    insert into p2p_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="loginPassword != null" >
+        LOGIN_PASSWORD,
+      </if>
+      <if test="recommendCode != null" >
+        RECOMMEND_CODE,
+      </if>
+      <if test="custStatus != null" >
+        CUST_STATUS,
+      </if>
+      <if test="pwdErrorCounter != null" >
+        PWD_ERROR_COUNTER,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="payPwd != null" >
+        PAY_PWD,
+      </if>
+      <if test="regSource != null" >
+        REG_SOURCE,
+      </if>
+      <if test="regDevice != null" >
+        REG_DEVICE,
+      </if>
+      <if test="regOs != null" >
+        REG_OS,
+      </if>
+      <if test="referee != null" >
+        REFEREE,
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME,
+      </if>
+      <if test="loginIp != null" >
+        LOGIN_IP,
+      </if>
+      <if test="lockTime != null" >
+        LOCK_TIME,
+      </if>
+      <if test="loginCount != null" >
+        LOGIN_COUNT,
+      </if>
+      <if test="custType != null" >
+        CUST_TYPE,
+      </if>
+      <if test="mobile != null" >
+        MOBILE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="custKind != null" >
+        CUST_KIND,
+      </if>
+      <if test="activitySrc != null" >
+        ACTIVITY_SRC,
+      </if>
+      <if test="belongPlatform != null" >
+        BELONG_PLATFORM,
+      </if>
+      <if test="investMediateFlag != null" >
+        INVEST_MEDIATE_FLAG,
+      </if>
+      <if test="borrowMediateFlag != null" >
+        BORROW_MEDIATE_FLAG,
+      </if>
+      <if test="randomNo != null" >
+        RANDOM_NO,
+      </if>
+      <if test="resetTime != null" >
+        RESET_TIME,
+      </if>
+      <if test="yeepayAuth != null" >
+        YEEPAY_AUTH,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendCode != null" >
+        #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custStatus != null" >
+        #{custStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdErrorCounter != null" >
+        #{pwdErrorCounter,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payPwd != null" >
+        #{payPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="regSource != null" >
+        #{regSource,jdbcType=VARCHAR},
+      </if>
+      <if test="regDevice != null" >
+        #{regDevice,jdbcType=VARCHAR},
+      </if>
+      <if test="regOs != null" >
+        #{regOs,jdbcType=VARCHAR},
+      </if>
+      <if test="referee != null" >
+        #{referee,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTime != null" >
+        #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null" >
+        #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="custType != null" >
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="custKind != null" >
+        #{custKind,jdbcType=VARCHAR},
+      </if>
+      <if test="activitySrc != null" >
+        #{activitySrc,jdbcType=VARCHAR},
+      </if>
+      <if test="belongPlatform != null" >
+        #{belongPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="investMediateFlag != null" >
+        #{investMediateFlag,jdbcType=CHAR},
+      </if>
+      <if test="borrowMediateFlag != null" >
+        #{borrowMediateFlag,jdbcType=CHAR},
+      </if>
+      <if test="randomNo != null" >
+        #{randomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resetTime != null" >
+        #{resetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yeepayAuth != null" >
+        #{yeepayAuth,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.entity.customer.Customer" >
+    update p2p_customer
+    <set >
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendCode != null" >
+        RECOMMEND_CODE = #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custStatus != null" >
+        CUST_STATUS = #{custStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdErrorCounter != null" >
+        PWD_ERROR_COUNTER = #{pwdErrorCounter,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payPwd != null" >
+        PAY_PWD = #{payPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="regSource != null" >
+        REG_SOURCE = #{regSource,jdbcType=VARCHAR},
+      </if>
+      <if test="regDevice != null" >
+        REG_DEVICE = #{regDevice,jdbcType=VARCHAR},
+      </if>
+      <if test="regOs != null" >
+        REG_OS = #{regOs,jdbcType=VARCHAR},
+      </if>
+      <if test="referee != null" >
+        REFEREE = #{referee,jdbcType=BIGINT},
+      </if>
+      <if test="nickName != null" >
+        NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lockTime != null" >
+        LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginCount != null" >
+        LOGIN_COUNT = #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="custType != null" >
+        CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        MOBILE = #{mobile,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="custKind != null" >
+        CUST_KIND = #{custKind,jdbcType=VARCHAR},
+      </if>
+      <if test="activitySrc != null" >
+        ACTIVITY_SRC = #{activitySrc,jdbcType=VARCHAR},
+      </if>
+      <if test="belongPlatform != null" >
+        BELONG_PLATFORM = #{belongPlatform,jdbcType=VARCHAR},
+      </if>
+      <if test="investMediateFlag != null" >
+        INVEST_MEDIATE_FLAG = #{investMediateFlag,jdbcType=CHAR},
+      </if>
+      <if test="borrowMediateFlag != null" >
+        BORROW_MEDIATE_FLAG = #{borrowMediateFlag,jdbcType=CHAR},
+      </if>
+      <if test="randomNo != null" >
+        RANDOM_NO = #{randomNo,jdbcType=VARCHAR},
+      </if>
+      <if test="resetTime != null" >
+        RESET_TIME = #{resetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="yeepayAuth != null" >
+        YEEPAY_AUTH = #{yeepayAuth,jdbcType=CHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.entity.customer.Customer" >
+    update p2p_customer
+    set LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+      RECOMMEND_CODE = #{recommendCode,jdbcType=VARCHAR},
+      CUST_STATUS = #{custStatus,jdbcType=VARCHAR},
+      PWD_ERROR_COUNTER = #{pwdErrorCounter,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PAY_PWD = #{payPwd,jdbcType=VARCHAR},
+      REG_SOURCE = #{regSource,jdbcType=VARCHAR},
+      REG_DEVICE = #{regDevice,jdbcType=VARCHAR},
+      REG_OS = #{regOs,jdbcType=VARCHAR},
+      REFEREE = #{referee,jdbcType=BIGINT},
+      NICK_NAME = #{nickName,jdbcType=VARCHAR},
+      LOGIN_IP = #{loginIp,jdbcType=VARCHAR},
+      LOCK_TIME = #{lockTime,jdbcType=TIMESTAMP},
+      LOGIN_COUNT = #{loginCount,jdbcType=INTEGER},
+      CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      MOBILE = #{mobile,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CUST_KIND = #{custKind,jdbcType=VARCHAR},
+      ACTIVITY_SRC = #{activitySrc,jdbcType=VARCHAR},
+      BELONG_PLATFORM = #{belongPlatform,jdbcType=VARCHAR},
+      INVEST_MEDIATE_FLAG = #{investMediateFlag,jdbcType=CHAR},
+      BORROW_MEDIATE_FLAG = #{borrowMediateFlag,jdbcType=CHAR},
+      RANDOM_NO = #{randomNo,jdbcType=VARCHAR},
+      RESET_TIME = #{resetTime,jdbcType=TIMESTAMP},
+      YEEPAY_AUTH = #{yeepayAuth,jdbcType=CHAR}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
